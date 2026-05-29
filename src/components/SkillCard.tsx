@@ -25,9 +25,8 @@ const SkillCard = ({
 }: SkillRecord) => {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async (e: React.MouseEvent) => {
+  const handleCopy = async () => {
     try {
-      e.preventDefault();
       await navigator.clipboard.writeText(installCommand);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
