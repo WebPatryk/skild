@@ -25,11 +25,15 @@ const SkillCard = ({
 }: SkillRecord) => {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigator.clipboard.writeText(installCommand);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async (e: React.MouseEvent) => {
+    try {
+      e.preventDefault();
+      await navigator.clipboard.writeText(installCommand);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   const authorName = authorEmail ? authorEmail.split("@")[0] : "anonymous";
